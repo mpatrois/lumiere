@@ -15,13 +15,13 @@
 
       <button type="submit">Register</button>
     </form>
-    <p class="error-upload" v-if="errorUpload">{{ errorUpload }}</p>
+    <p :class="message.class ? message.class : ''" v-if="message">{{ errorUpload }}</p>
   </section>
 </template>
 
 <script>
+import axios from 'axios';
 import uploaderSettings from "./uploaderSettings.js"
-
 
 export default {
   name: 'Uploader',
@@ -30,16 +30,19 @@ export default {
       videoTitle: '',
       videoDesc: '',
       videoFile: '',
-      errorUpload: ''
+      message: ''
     }
   },
   methods: {
     handleFileUpload() {
-      this.errorUpload = '';
+      this.message = '';
       if (uploaderSettings.formats.includes(this.$refs.videoFile.files[0].type)) {
         this.videoFile = this.$refs.videoFile.files[0]
       } else {
-        this.errorUpload = `Format not supported, please upload a video with .mp4 or .mov format`;
+        this.message = {
+          class: `error`,
+          text: `Format not supported, please upload a video with .mp4 or .mov format`
+        };
         this.$refs.videoFile.type = 'text';
         this.$refs.videoFile.type = 'file';
       }
@@ -48,7 +51,30 @@ export default {
       let formData = new FormData();
 
       if (this.videoTitle && this.videoDesc && this.videoFile) {
+        formData.append('title', this.videoTitle);
+        formData.append('description', this.videoDesc);
         formData.append('file', this.videoFile);
+
+        axios.post('/api/video',formData, 
+        { 
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+        ).then(response => {
+          console.log(message);
+          this.message = {
+            class: `success`,
+            text: `The file has been send, thank you`
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          this.message = {
+            class: `error`,
+            text: `There is a bug while sending your file, please retry later`            
+          }
+        });
       }
     }
   }
