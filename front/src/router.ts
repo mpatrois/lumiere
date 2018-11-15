@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Uploader from "./views/Uploader.vue";
+import Uploader from "./views/Uploader/Uploader.vue";
 
 Vue.use(Router);
 
