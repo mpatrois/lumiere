@@ -11,6 +11,21 @@
 |
 */
 
-Route::get('/{any}', function () {
+
+
+Route::prefix('api')->group(function () {
+    
+    Auth::routes();
+    
+    Route::get('/user', function () {
+        return Auth::user();
+    });
+    Route::get('/logout', function () {
+        Auth::logout();
+    });
+
+});
+
+Route::get('{any}', function () {
     return File::get(public_path() . '/index.html');
 })->where('any', '.*');;

@@ -10,9 +10,17 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import axios from 'axios';
+
 export default Vue.extend({
   created() {
-    fetch('/api/test');
+    // fetch('/api/user');
+    // axios.get('api/logout');
+    // axios.post('/api/login',{
+    //   'email': 'admin@admin.fr',
+    //   'password': 'motdepasse',
+    // });
+
   },
 });
 </script>
