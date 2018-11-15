@@ -43,23 +43,39 @@ class VideoController extends Controller
     public function store(Request $request)
     {
        
-        $file = $request->file('file');
-				$nameFile = $this->gen_uuid() . '.' . $file->getClientOriginalExtension();
+				$file = $request->file('file');
+				$uniqId = $this->gen_uuid();
+				$nameFile = $uniqId . '.' . $file->getClientOriginalExtension();
 				$shortPath = "app/videos/$nameFile";
+				$shortPreviewPath = "/thumbs/$uniqId.png";
 				$pathFile = storage_path('app/videos/');
         $file->move($pathFile, $nameFile);
+
+				$parts = explode(',', $request->videoPreview);  
+    		$base64_str = $parts[1];  
+				$image = base64_decode($base64_str);
+				// dd($shortPreviewPath);
+				Storage::disk('local')->put($shortPreviewPath, $image);
 
 				$video = new Video([
 					'title' => $request->title,
 					'description' => $request->description,
 					'path' => $shortPath,
+					'url_preview' => $shortPreviewPath
 				]);
 
         $video->user_id = $request->user()->id;
         $video->save();
 
        return $video;
-    }
+		}
+		
+
+		function preview($id){
+			$video = Video::find($id);
+			// dd(storage_path($video->url_preview));
+			return response()->download(storage_path("/app/$video->url_preview"));
+		}
 
     /**
      * Display the specified resource.

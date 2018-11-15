@@ -6,12 +6,12 @@
         <router-link :to="`/video/${video.id}`">
           <h2>Title : {{ video.title }}</h2>
           <p>desc : {{ video.description }}</p>
-          <video width="400" controls>
-            <source :src="'/api/video/play/' + video.id">
-            <!-- <source src="mov_bbb.ogg" type="video/ogg"> -->
-            Your browser does not support HTML5 video.
-          </video>
+          <img :src="'/api/video/preview/'+video.id">
         </router-link>
+        <h2>Title : {{ video.title }}</h2>
+        <p>desc : {{ video.description }}</p>
+        <img :src="'/api/video/preview/'+video.id">
+        <a :href="video.path" target="_blank">link</a>
       </li>
     </ul>
   </section>
