@@ -2,8 +2,6 @@
   <div id="app">
     <div id="nav">
       <router-link to="/upload">Uploader</router-link> |
-      <router-link to="/about">About</router-link> | 
-      <router-link to="/videos">Vidéos</router-link>
     </div>
     <router-view/>
   </div>
