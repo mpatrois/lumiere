@@ -26,6 +26,7 @@ Route::prefix('api')->group(function () {
     
     Route::get('video/play/{id}', 'VideoController@play');
     Route::resource('video', 'VideoController');
+    Route::get('video/{id}', 'VideoController@show');
 
 });
 

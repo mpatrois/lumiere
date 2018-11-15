@@ -69,8 +69,9 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
-		}
+        $video = Video::find($id);
+        return $video;
+	}
 		
 
     /**

@@ -4,6 +4,7 @@ import Uploader from "./views/Uploader/Uploader.vue";
 import ListVideos from "./views/ListVideos/ListVideos.vue";
 import NotFound from "./views/404NotFound.vue";
 import Login from "./views/Login.vue";
+import SingleVideo from "./views/SingleVideo/SingleVideo.vue";
 import App from "./App.vue";
 import axios from 'axios';
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: ListVideos
+    },
+    {
+      path: '/video/:id',
+      name: 'singleVideo',
+      component: SingleVideo
     },
     {
       path: '/404',

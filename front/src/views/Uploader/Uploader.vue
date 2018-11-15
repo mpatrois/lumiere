@@ -15,7 +15,7 @@
 
       <button type="submit">Register</button>
     </form>
-    <p :class="message.class ? message.class : ''" v-if="message">{{ errorUpload }}</p>
+    <p :class="message.class ? message.class : ''" v-if="message">{{ message.text }}</p>
   </section>
 </template>
 

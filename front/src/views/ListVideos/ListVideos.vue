@@ -3,14 +3,15 @@
     <h1>LISTVIDEOS View</h1>
     <ul>
       <li v-for="(video,index) in videos" :key="index" >
-        <h2>Title : {{ video.title }}</h2>
-        <p>desc : {{ video.description }}</p>
-        <video width="400" controls>
-          <source :src="'/api/video/play/' + video.id">
-          <!-- <source src="mov_bbb.ogg" type="video/ogg"> -->
-          Your browser does not support HTML5 video.
-        </video>
-        <a :href="video.path" target="_blank">link</a>
+        <router-link :to="`/video/${video.id}`">
+          <h2>Title : {{ video.title }}</h2>
+          <p>desc : {{ video.description }}</p>
+          <video width="400" controls>
+            <source :src="'/api/video/play/' + video.id">
+            <!-- <source src="mov_bbb.ogg" type="video/ogg"> -->
+            Your browser does not support HTML5 video.
+          </video>
+        </router-link>
       </li>
     </ul>
   </section>
