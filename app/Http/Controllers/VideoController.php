@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Video;
+use Storage;
 
 class VideoController extends Controller
 {
@@ -61,6 +62,19 @@ class VideoController extends Controller
     public function show($id)
     {
         //
+		}
+		
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function play($id)
+    {
+			$video = Video::find($id);
+			return Storage::disk('local')->download($video->path);
     }
 
     /**

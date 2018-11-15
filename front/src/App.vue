@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/upload">Uploader</router-link> |
+      <router-link to="/upload">Uploader</router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
 import axios from 'axios';
 

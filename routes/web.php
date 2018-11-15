@@ -23,9 +23,16 @@ Route::prefix('api')->group(function () {
     Route::get('/logout', function () {
         Auth::logout();
     });
+    
+    Route::get('video/play/{id}', 'VideoController@play');
     Route::resource('video', 'VideoController');
 
+
+    
+
 });
+
+
 
 Route::get('{any}', function () {
     return File::get(public_path() . '/index.html');
