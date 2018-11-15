@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Uploader from "./views/Uploader/Uploader.vue";
+import ListVideos from "./views/ListVideos/ListVideos.vue";
 
 Vue.use(Router);
 
@@ -21,5 +22,10 @@ export default new Router({
       name: 'upload',
       component: Uploader
     },
+    {
+      path: '/videos',
+      name: 'videos',
+      component: ListVideos
+    }
   ],
 });
