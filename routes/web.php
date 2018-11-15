@@ -25,7 +25,7 @@ Route::prefix('api')->group(function () {
     });
     
     Route::get('video/play/{id}', 'VideoController@play');
-    Route::resource('video', 'VideoController')->middleware('auth');
+    Route::resource('video', 'VideoController');
 
 });
 

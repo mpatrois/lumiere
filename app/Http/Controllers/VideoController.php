@@ -8,6 +8,11 @@ use Storage;
 
 class VideoController extends Controller
 {
+
+		function __construc(){
+			$this->middleware('auth', ['only' => ['store', 'delete']]);
+		}
+
     /**
      * Display a listing of the resource.
      *
@@ -45,9 +50,9 @@ class VideoController extends Controller
         $file->move($pathFile, $nameFile);
 
 				$video = new Video([
-					'title'=>$request->title,
-					'description'=>$request->description,
-					'path'=> $shortPath,
+					'title' => $request->title,
+					'description' => $request->description,
+					'path' => $shortPath,
 				]);
 
         $video->user_id = $request->user()->id;
@@ -77,7 +82,8 @@ class VideoController extends Controller
     public function play($id)
     {
 			$video = Video::find($id);
-			return Storage::disk('local')->download($video->path);
+			return response()->download(storage_path($video->path));
+			// return Storage::disk('local')->download();
     }
 
     /**
