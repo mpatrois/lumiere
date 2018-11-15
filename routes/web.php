@@ -23,6 +23,7 @@ Route::prefix('api')->group(function () {
     Route::get('/logout', function () {
         Auth::logout();
     });
+    Route::resource('video', 'VideoController');
 
 });
 
