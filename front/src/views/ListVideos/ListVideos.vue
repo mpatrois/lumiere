@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <div>
+    <Header hasSearchBar="true"/>
     <h1>LISTVIDEOS View</h1>
     <ul>
       <li v-for="(video,index) in videos" :key="index" >
@@ -10,14 +11,17 @@
         </router-link>
       </li>
     </ul>
-  </section>
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
-
+import Header from "../../components/Header.vue";
 export default {
   name: "ListVideos",
+  components: {
+    Header
+  },
   data() {
     return {
       videos: []
