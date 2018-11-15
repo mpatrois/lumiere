@@ -37,20 +37,23 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-       $video = new Video([
-        'title'=>$request->title,
-        'description'=>$request->description,
-        'path'=>'https://www.youtube.com/watch?v=9Ncd1har8tY'
-       ]);
+       
+        $file = $request->file('file');
+				$nameFile = $this->gen_uuid() . '.' . $file->getClientOriginalExtension();
+				$shortPath = "app/videos/$nameFile";
+				$pathFile = storage_path('app/videos/');
+        $file->move($pathFile, $nameFile);
 
-       $video->save();
+				$video = new Video([
+					'title'=>$request->title,
+					'description'=>$request->description,
+					'path'=> $shortPath,
+				]);
+
+        $video->user_id = $request->user()->id;
+        $video->save();
 
        return $video;
-        // $file = $request->file('file')
-        // $request->title;
-        // $request->description;
-        // $video = 'https://www.youtube.com/watch?v=9Ncd1har8tY';
-    //  dd();
     }
 
     /**
@@ -110,4 +113,24 @@ class VideoController extends Controller
     {
         //
     }
+
+
+    private function gen_uuid() {
+        return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+            // 32 bits for "time_low"
+            mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+            // 16 bits for "time_mid"
+            mt_rand( 0, 0xffff ),
+            // 16 bits for "time_hi_and_version",
+            // four most significant bits holds version number 4
+            mt_rand( 0, 0x0fff ) | 0x4000,
+            // 16 bits, 8 bits for "clk_seq_hi_res",
+            // 8 bits for "clk_seq_low",
+            // two most significant bits holds zero and one for variant DCE1.1
+            mt_rand( 0, 0x3fff ) | 0x8000,
+            // 48 bits for "node"
+            mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
+        );
+    }
+
 }
