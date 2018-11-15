@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Header />
+      <Header/>
     </div>
     <router-view/>
   </div>
@@ -10,14 +10,15 @@
 <script>
 import Vue from 'vue';
 import axios from 'axios';
-import Header from "./components/Header.vue";
+import Header from './components/Header.vue';
+// import Header from './components/Header.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    Header
-  }
-}
+    Header,
+  },
+};
 </script>
 
 

@@ -16,23 +16,23 @@
 import axios from 'axios';
 
 export default {
-  name: "SingleVideo",
+  name: 'SingleVideo',
   data() {
     return {
       video: '',
-      isVideoLaunched: false
-    }
-  },  
+      isVideoLaunched: false,
+    };
+  },
   methods: {
     launchVideo() {
       this.isVideoLaunched = true;
-    }
+    },
   },
   created() {
     axios.get(`/api/video/${this.$route.params.id}`)
-    .then(video => {
-      this.video = video.data;
-    })
-  }
-}
+      .then((video) => {
+        this.video = video.data;
+      });
+  },
+};
 </script>

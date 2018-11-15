@@ -7,7 +7,7 @@
     <div class="header__actions">
       <router-link to="/upload">
         <img src="https://image.flaticon.com/icons/svg/149/149185.svg" alt="" class="tmpIconHeader">
-      </router-link> 
+      </router-link>
       <img src="https://image.flaticon.com/icons/svg/633/633584.svg" alt="" class="tmpIconHeader" @click="displayNotifs">
       <img src="https://image.flaticon.com/icons/svg/78/78373.svg" alt="" class="tmpIconProfile" @click="displayProfile">
     </div>
@@ -16,25 +16,23 @@
 
 <script>
 export default {
-  name: "Header",
+  name: 'Header',
   data() {
     return {
       searchText: '',
-      videos: []
-    }
+      videos: [],
+    };
   },
   methods: {
     displayNotifs() {
-      console.log(`no notifs right now`)
+      console.log('no notifs right now');
     },
     displayProfile() {
-      console.log(`profile page will be soon developped`)
+      console.log('profile page will be soon developped');
     },
     goToSearch() {
       this.$router.push(`/results?search_query=${this.searchText}`);
-    }
-  }
-}
+    },
+  },
+};
 </script>
-
-

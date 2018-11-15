@@ -1,13 +1,19 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Uploader from "./views/Uploader/Uploader.vue";
-import ListVideos from "./views/ListVideos/ListVideos.vue";
-import NotFound from "./views/404NotFound.vue";
-import Login from "./views/Login.vue";
-import SingleVideo from "./views/SingleVideo/SingleVideo.vue";
-import Results from "./views/Results.vue";
-import App from "./App.vue";
 import axios from 'axios';
+import Uploader from './views/Uploader/Uploader.vue';
+import ListVideos from './views/ListVideos/ListVideos.vue';
+import NotFound from './views/404NotFound.vue';
+import Login from './views/Login.vue';
+import SingleVideo from './views/SingleVideo/SingleVideo.vue';
+import Results from './views/Results.vue';
+// import App from './App.vue';
+// import Uploader from './views/Uploader/Uploader.vue';
+// import ListVideos from './views/ListVideos/ListVideos.vue';
+// import NotFound from './views/404NotFound.vue';
+// import Login from './views/Login.vue';
+// import SingleVideo from './views/SingleVideo/SingleVideo.vue';
+// import App from './App.vue';
 
 Vue.use(Router);
 
@@ -15,7 +21,7 @@ function checkAuth(to, from, next) {
   axios.get('/api/user').then((response) => {
     if (response.data === '') {
       // console.log(to);
-      next('/login?redirectUrl='+to.name);
+      next(`/login?redirectUrl=${to.name}`);
     } else {
       next();
     }
@@ -47,38 +53,38 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: ListVideos
+      component: ListVideos,
     },
     {
       path: '/video/:id',
       name: 'singleVideo',
-      component: SingleVideo
+      component: SingleVideo,
     },
     {
       path: '/results',
       name: 'results',
-      component: Results
+      component: Results,
     },
     {
       path: '/404',
       name: 'errorPage',
-      component: NotFound
+      component: NotFound,
     },
     {
       path: '*',
-      redirect: '/404'
+      redirect: '/404',
     },
     {
       beforeEnter: checkAuth,
       path: '/upload',
       name: 'upload',
-      component: Uploader
+      component: Uploader,
     },
     {
       beforeEnter: redirectIfAuth,
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
     },
   ],
 });

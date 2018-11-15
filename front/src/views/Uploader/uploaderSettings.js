@@ -1,6 +1,6 @@
 export default {
   formats: [
-    "video/mp4",
-    "video/quicktime"
-  ]
-}
+    'video/mp4',
+    'video/quicktime',
+  ],
+};

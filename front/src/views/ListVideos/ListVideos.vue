@@ -15,25 +15,23 @@
 
 <script>
 import axios from 'axios';
+
 export default {
-  name: "ListVideos",
+  name: 'ListVideos',
   data() {
     return {
-      videos: []
-    }
+      videos: [],
+    };
   },
   computed: {
-    videoFiltered() {
-      return this.videos.filter(video => !video.title.includes(this.searchText))
-    }
+    // videoFiltered() {
+    //   return this.videos.filter(video => !video.title.includes(this.searchText))
+    // }
   },
   created() {
-
+    axios.get('/api/video').then((videos) => {
+      this.videos = videos.data;
+    });
   },
-  methods: {
-    filterVideos(search) {
-      console.log("SEARCH", search);
-    }
-  }
-}
+};
 </script>

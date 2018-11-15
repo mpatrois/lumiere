@@ -87,18 +87,18 @@ export default {
       password: '',
       remember: true,
       errors: [],
-      redirectUrl: '/'
+      redirectUrl: '/',
     };
   },
-  created(){
-      if(this.$route.query.redirectUrl){
-          this.redirectUrl = this.$route.query.redirectUrl;
-      }
+  created() {
+    if (this.$route.query.redirectUrl) {
+      this.redirectUrl = this.$route.query.redirectUrl;
+    }
   },
   methods: {
     login() {
       this.errors = [];
-      axios.post('/api/login',{
+      axios.post('/api/login', {
         email: this.email,
         password: this.password,
         remember: this.remember ? 'on' : null,

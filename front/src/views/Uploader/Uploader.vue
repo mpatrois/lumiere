@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1>UPLOADER VIEW</h1>
-    <form method="POST" @submit.prevent="submitVideoForm"> 
+    <form method="POST" @submit.prevent="submitVideoForm">
       <fieldset>
         <input v-model="videoTitle" type="text" placeholder="Titre de la vidéo">
         <textarea v-model="videoDesc" placeholder="Description de la vidéo" />
@@ -26,37 +26,37 @@
 
 <script>
 import axios from 'axios';
-import uploaderSettings from "./uploaderSettings.js"
+import uploaderSettings from './uploaderSettings';
 
 export default {
   name: 'Uploader',
-  data(){
-    return {
+  data() {
+    return {
       videoTitle: '',
       videoDesc: '',
       videoFile: '',
       message: '',
-      previewImageSrc:null,
-      videoData: null
-    }
+      previewImageSrc: null,
+      videoData: null,
+    };
   },
   methods: {
     handleFileUpload() {
       this.message = '';
       if (uploaderSettings.formats.includes(this.$refs.videoFile.files[0].type)) {
-        this.videoFile = this.$refs.videoFile.files[0]
+        [this.videoFile] = this.$refs.videoFile.files;
         this.getImageFromFile(this.videoFile);
       } else {
         this.message = {
-          class: `error`,
-          text: `Format not supported, please upload a video with .mp4 or .mov format`
+          class: 'error',
+          text: 'Format not supported, please upload a video with .mp4 or .mov format',
         };
         this.$refs.videoFile.type = 'text';
         this.$refs.videoFile.type = 'file';
       }
     },
     submitVideoForm() {
-      let formData = new FormData();
+      const formData = new FormData();
 
       if (this.videoTitle && this.videoDesc && this.videoFile) {
         formData.append('title', this.videoTitle);
@@ -64,52 +64,51 @@ export default {
         formData.append('file', this.videoFile);
         formData.append('videoPreview', this.previewImageSrc);
 
-        axios.post('/api/video',formData, 
-        { 
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-        ).then(response => {
+        axios.post('/api/video', formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }).then((response) => {
           console.log(message);
           this.message = {
-            class: `success`,
-            text: `The file has been send, thank you`
-          }
+            class: 'success',
+            text: 'The file has been send, thank you',
+          };
         })
-        .catch((error) => {
-          this.message = {
-            class: `error`,
-            text: `There is a bug while sending your file, please retry later`            
-          }
-        });
+          .catch((error) => {
+            this.message = {
+              class: 'error',
+              text: 'There is a bug while sending your file, please retry later',
+            };
+          });
       }
     },
     getImageFromFile(file) {
-      var fileReader = new FileReader();
-        fileReader.onload = () => {
-          var blob = new Blob([fileReader.result], {type: file.type});
-          var url = URL.createObjectURL(blob);
-          var video = document.createElement('video');
-          this.videoData = url;
-          video.preload = 'metadata';
-          video.src = url;
-          video.muted = true;
-          video.playsInline = true;
-          video.play();
-        };
-        fileReader.readAsArrayBuffer(file);
-      },
-      snapImage (){
-        var canvas = document.createElement('canvas');
-        var video = this.$refs.videoPreview;
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-        var image = canvas.toDataURL();
-        this.previewImageSrc = canvas.toDataURL();
-      }
-  }
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        const blob = new Blob([fileReader.result], { type: file.type });
+        const url = URL.createObjectURL(blob);
+        const video = document.createElement('video');
+        this.videoData = url;
+        video.preload = 'metadata';
+        video.src = url;
+        video.muted = true;
+        video.playsInline = true;
+        video.play();
+      };
+      fileReader.readAsArrayBuffer(file);
+    },
+    snapImage() {
+      const canvas = document.createElement('canvas');
+      const video = this.$refs.videoPreview;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      const image = canvas.toDataURL();
+      this.previewImageSrc = canvas.toDataURL();
+    },
+  },
 };
 </script>
 
