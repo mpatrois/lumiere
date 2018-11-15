@@ -8,10 +8,6 @@
           <p>desc : {{ video.description }}</p>
           <img :src="'/api/video/preview/'+video.id">
         </router-link>
-        <h2>Title : {{ video.title }}</h2>
-        <p>desc : {{ video.description }}</p>
-        <img :src="'/api/video/preview/'+video.id">
-        <a :href="video.path" target="_blank">link</a>
       </li>
     </ul>
   </section>

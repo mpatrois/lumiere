@@ -1,9 +1,9 @@
 <template>
-  <section>
+  <section v-if="video">
     <h1>SINGLEVIDEO view</h1>
     <p>{{ video.title }}</p>
     <span>{{ video.description }}</span>
-    <img src="https://picsum.photos/200/300" alt="" @click="launchVideo" v-if="!isVideoLaunched">
+    <img :src="'/api/video/preview/'+video.id" alt="" @click="launchVideo" v-if="!isVideoLaunched">
 
     <video width="400" controls v-if="isVideoLaunched" autoplay>
       <source :src="'/api/video/play/' + video.id">
