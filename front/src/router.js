@@ -5,6 +5,7 @@ import ListVideos from "./views/ListVideos/ListVideos.vue";
 import NotFound from "./views/404NotFound.vue";
 import Login from "./views/Login.vue";
 import SingleVideo from "./views/SingleVideo/SingleVideo.vue";
+import Results from "./views/Results.vue";
 import App from "./App.vue";
 import axios from 'axios';
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/video/:id',
       name: 'singleVideo',
       component: SingleVideo
+    },
+    {
+      path: '/results',
+      name: 'results',
+      component: Results
     },
     {
       path: '/404',

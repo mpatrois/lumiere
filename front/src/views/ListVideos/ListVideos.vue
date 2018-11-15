@@ -1,9 +1,8 @@
 <template>
   <div>
-    <Header hasSearchBar="true"/>
     <h1>LISTVIDEOS View</h1>
     <ul>
-      <li v-for="(video,index) in videos" :key="index" >
+      <li v-for="(video,index) in videos" :key="index">
         <router-link :to="`/video/${video.id}`">
           <h2>Title : {{ video.title }}</h2>
           <p>desc : {{ video.description }}</p>
@@ -16,21 +15,25 @@
 
 <script>
 import axios from 'axios';
-import Header from "../../components/Header.vue";
 export default {
   name: "ListVideos",
-  components: {
-    Header
-  },
   data() {
     return {
       videos: []
     }
   },
-  created() {
-    axios.get('/api/video').then(videos => {
-      this.videos = videos.data;
-    })
+  computed: {
+    videoFiltered() {
+      return this.videos.filter(video => !video.title.includes(this.searchText))
+    }
   },
+  created() {
+
+  },
+  methods: {
+    filterVideos(search) {
+      console.log("SEARCH", search);
+    }
+  }
 }
 </script>
