@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>LISTVIDEOS View</h1>
     <ul>
       <li v-for="(video,index) in videos" :key="index">
         <router-link :to="`/video/${video.id}`">

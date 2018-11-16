@@ -1,23 +1,54 @@
+/**
+* HEADER
+**/
 header {
   display: flex;
   justify-content: space-between;
   height: 30px;
+  margin-bottom: 20px;
+
   .logo {
     width: 140px;
-    height: auto;;
+    height: auto;
   }
   .tmpIconHeader {
     width: 30px;
   }  
 }
+
 .header__actions {
   display: flex;
+
+  .notifs,
+  .profile {
+    position: relative;
+  }
 }
+
+.notifs__content,
+.profile__content {
+  display: none;
+}
+
 .searchBar {
   width: 100%;
   margin: 0 10%;
   border:none;
   outline:0;
   border-bottom: 1px solid #ccc
+}
 
+
+/**
+* SINGLE VIDEO
+**/
+.video__container {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  height: 400px;
+
+  img, video {
+    max-height: 400px;
+  }
 }

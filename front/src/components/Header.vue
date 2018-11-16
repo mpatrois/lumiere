@@ -8,8 +8,18 @@
       <router-link to="/upload">
         <img src="https://image.flaticon.com/icons/svg/149/149185.svg" alt="" class="tmpIconHeader">
       </router-link>
-      <img src="https://image.flaticon.com/icons/svg/633/633584.svg" alt="" class="tmpIconHeader" @click="displayNotifs">
-      <img src="https://image.flaticon.com/icons/svg/78/78373.svg" alt="" class="tmpIconProfile" @click="displayProfile">
+      <div class="notifs">
+        <img src="https://image.flaticon.com/icons/svg/633/633584.svg" alt="" class="tmpIconHeader" @click="displayNotifs">
+        <div class="notifs__content">
+          Pas de notifs disponibles
+        </div>
+      </div>
+      <div class="profile">
+        <img src="https://image.flaticon.com/icons/svg/78/78373.svg" alt="" class="tmpIconHeader" @click="displayProfile">
+        <div class="profile__content">
+          Pas d'informations profile
+        </div>
+      </div>
     </div>
   </header>
 </template>
