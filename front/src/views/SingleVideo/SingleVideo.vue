@@ -1,15 +1,22 @@
 <template>
   <section v-if="video" class="singleVideo__container">
     <div class="singleVideo__video__container">
-      <video ref="video" autoplay="true" @click="play()">
+
+
+      <video v-if="!pubHasPlayed" ref="videoPub" autoplay="true">
+        <source src="../../assets/pub.mp4">
+      </video>
+
+      <video ref="video" @click="play()" :class="{'hide' : !pubHasPlayed}">
         <source :src="'/api/video/play/' + video.id">
         Your browser does not support HTML5 video.
       </video>
+
       <div class="video-controls">
-        <span class="play" v-if="isPause()">
+        <span class="play" v-if="isPause()" :class="{'hide' : !pubHasPlayed}">
           <img src="../../assets/play_button.svg">
         </span>
-        <span class="play" v-else>
+        <span class="play" v-else :class="{'hide' : !pubHasPlayed}">
           <img src="../../assets/pause_button.svg">
         </span>
 
@@ -102,6 +109,7 @@ export default {
       currentTime: 0,
       duration: 0,
       visibleDescription: false,
+      pubHasPlayed: false,
     };
   },
   computed: {
@@ -114,10 +122,12 @@ export default {
       this.isVideoLaunched = true;
     },
     play() {
-      if (this.$refs.video.paused) {
-        this.$refs.video.play();
-      } else {
-        this.$refs.video.pause();
+      if (this.pubHasPlayed) {
+        if (this.$refs.video.paused) {
+          this.$refs.video.play();
+        } else {
+          this.$refs.video.pause();
+        }
       }
     },
     secondToHumanDisplay(timeSecond) {
@@ -137,13 +147,33 @@ export default {
     axios.get(`/api/video/${this.$route.params.id}`)
       .then((video) => {
         this.video = video.data;
+        // setTimeout(() => {
+        //   this.duration = this.$refs.video.duration;
+        //   this.$refs.video.ontimeupdate = (event) => {
+        //     this.currentTime = event.target.currentTime;
+        //   };
+        //   this.$refs.video.play();
+        // }, 200);
+
         setTimeout(() => {
-          this.duration = this.$refs.video.duration;
-          this.$refs.video.ontimeupdate = (event) => {
+          this.$refs.videoPub.play();
+          // this.$refs.videoPub.muted = false;
+          // this.$refs.videoPub.play();
+          this.duration = this.$refs.videoPub.duration;
+          this.$refs.videoPub.ontimeupdate = (event) => {
             this.currentTime = event.target.currentTime;
           };
-          this.$refs.video.play();
-        }, 200);
+          this.$refs.videoPub.onended = () => {
+            this.pubHasPlayed = true;
+            setTimeout(() => {
+              this.duration = this.$refs.video.duration;
+              this.$refs.video.ontimeupdate = (event) => {
+                this.currentTime = event.target.currentTime;
+              };
+              this.$refs.video.play();
+            }, 200);
+          };
+        }, 600);
       });
   },
   beforeDestroy() {
@@ -214,6 +244,20 @@ export default {
 
 .play{
   margin-right: 10px;
+}
+
+video{
+  max-height: 400px;
+}
+
+.hide{
+  display: none;
+}
+
+.video-controls{
+  &.hide{
+    display: none;
+  }
 }
 
 </style>
