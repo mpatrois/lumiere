@@ -28,7 +28,9 @@
             </div>
           </div>
           <ul class="reactions-buttons">
-            <li v-for="(emoji, index) in emojiReactions" :key="index">{{emoji}}</li>
+            <li v-for="(emoji, index) in emojiReactions" :key="index">
+              <span>{{emoji}}</span>
+            </li>
           </ul>
         </div>
         <div class="profile">
@@ -87,7 +89,6 @@ export default {
     },
     secondToHumanDisplay(timeSecond) {
       const date = new Date(null);
-      console.log(timeSecond);
       date.setSeconds(timeSecond);
       const result = date.toISOString().substr(14, 5);
       return result;
