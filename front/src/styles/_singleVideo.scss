@@ -1,0 +1,15 @@
+.singleVideo__container {
+  background-color: $main-gray;
+}
+
+.singleVideo__video__container {
+  margin: 0 auto;
+  width: 80%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+
+  video {
+    width: 100%;
+  }
+} 

@@ -1,6 +1,6 @@
 <template>
-  <section v-if="video">
-    <div class="video__container">
+  <section v-if="video" class="singleVideo__container">
+    <div class="singleVideo__video__container">
       <img :src="'/api/video/preview/'+video.id" alt="" @click="launchVideo" v-if="!isVideoLaunched">
       <video width="400" controls v-if="isVideoLaunched" autoplay>
         <source :src="'/api/video/play/' + video.id">
@@ -15,11 +15,10 @@
         <p>Shared <span>{{sharedNb}}K</span></p>
         <p>plants <span>{{plantsNb}}K</span></p>
       </div>
+      <CommentsSection :comments="video.comments"/>
     </div>
     <p>{{ video.title }}</p>
     <span>{{ video.description }}</span>
-
-
   </section>
 </template>
 
@@ -34,7 +33,7 @@ export default {
       isVideoLaunched: false,
       viewsNb: this.randomNb(100, 800),
       sharedNb: this.randomNb(1, 50),
-      plantsNb: this.randomNb(50, 400)
+      plantsNb: this.randomNb(50, 400),
     };
   },
   methods: {
