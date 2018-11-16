@@ -3,7 +3,7 @@
     <div class="singleVideo__video__container">
 
 
-      <video v-if="!pubHasPlayed" ref="videoPub" autoplay="true">
+      <video v-if="!pubHasPlayed" ref="videoPub" autoplay>
         <source src="../../assets/pub.mp4">
       </video>
 
@@ -173,7 +173,7 @@ export default {
               this.$refs.video.play();
             }, 200);
           };
-        }, 600);
+        }, 1000);
       });
   },
   beforeDestroy() {
