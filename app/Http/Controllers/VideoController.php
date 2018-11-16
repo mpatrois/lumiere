@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Video;
+use App\User;
 use Storage;
+use Faker;
 
 class VideoController extends Controller
 {
 
-		function __construc(){
-			$this->middleware('auth', ['only' => ['store', 'delete']]);
-		}
+    function __construc(){
+        $this->middleware('auth', ['only' => ['store', 'delete']]);
+    }
 
     /**
      * Display a listing of the resource.
@@ -43,39 +45,36 @@ class VideoController extends Controller
     public function store(Request $request)
     {
        
-				$file = $request->file('file');
-				$uniqId = $this->gen_uuid();
-				$nameFile = $uniqId . '.' . $file->getClientOriginalExtension();
-				$shortPath = "app/videos/$nameFile";
-				$shortPreviewPath = "/thumbs/$uniqId.png";
-				$pathFile = storage_path('app/videos/');
+        $file = $request->file('file');
+        $uniqId = $this->gen_uuid();
+        $nameFile = $uniqId . '.' . $file->getClientOriginalExtension();
+        $shortPath = "app/videos/$nameFile";
+        $shortPreviewPath = "/thumbs/$uniqId.png";
+        $pathFile = storage_path('app/videos/');
         $file->move($pathFile, $nameFile);
 
-				$parts = explode(',', $request->videoPreview);  
-    		$base64_str = $parts[1];  
-				$image = base64_decode($base64_str);
-				// dd($shortPreviewPath);
-				Storage::disk('local')->put($shortPreviewPath, $image);
-
-				$video = new Video([
-					'title' => $request->title,
-					'description' => $request->description,
-					'path' => $shortPath,
-					'url_preview' => $shortPreviewPath
-				]);
+        $parts = explode(',', $request->videoPreview);  
+        $base64_str = $parts[1];  
+        $image = base64_decode($base64_str);
+        Storage::disk('local')->put($shortPreviewPath, $image);
+        $video = new Video([
+            'title' => $request->title,
+            'description' => $request->description,
+            'path' => $shortPath,
+            'url_preview' => $shortPreviewPath
+        ]);
 
         $video->user_id = $request->user()->id;
         $video->save();
 
        return $video;
-		}
+	}
 		
 
-		function preview($id){
-			$video = Video::find($id);
-			// dd(storage_path($video->url_preview));
-			return response()->download(storage_path("/app/$video->url_preview"));
-		}
+    function preview($id){
+        $video = Video::find($id);
+        return response()->download(storage_path("/app/$video->url_preview"));
+    }
 
     /**
      * Display the specified resource.
@@ -86,6 +85,16 @@ class VideoController extends Controller
     public function show($id)
     {
         $video = Video::find($id);
+        $users = User::all();
+        $faker = Faker\Factory::create();
+        $fakesComments = [];
+        for ($i=0; $i < 50; $i++) { 
+            $fakesComments[] = [
+                'user' => $users[rand(0, count($users)-1)],
+                'content' => $faker->text,
+            ];
+        }
+        $video->comments = $fakesComments;
         return $video;
 	}
 		
@@ -98,9 +107,8 @@ class VideoController extends Controller
      */
     public function play($id)
     {
-			$video = Video::find($id);
-			return response()->download(storage_path($video->path));
-			// return Storage::disk('local')->download();
+        $video = Video::find($id);
+        return response()->download(storage_path($video->path));
     }
 
     /**

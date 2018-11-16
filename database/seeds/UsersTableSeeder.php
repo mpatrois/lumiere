@@ -11,14 +11,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users =
-        [
+        $users = [
             [
                 'name'         => 'admin',
                 'email'        => 'admin@admin.fr',
+                'url_avatar'   => "https://randomuser.me/api/portraits/women/1.jpg",
                 'password'     => bcrypt('motdepasse')
             ],
         ];
         User::insert($users);
+
+        factory(App\User::class, 20)->create();
+
     }
 }
