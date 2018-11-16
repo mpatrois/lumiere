@@ -7,6 +7,7 @@ use App\Video;
 use App\User;
 use Storage;
 use Faker;
+use Carbon\Carbon;
 
 class VideoController extends Controller
 {
@@ -89,9 +90,14 @@ class VideoController extends Controller
         $faker = Faker\Factory::create();
         $fakesComments = [];
         for ($i=0; $i < 50; $i++) { 
+            // dd($faker->date($format = 'Y-m-d', $max = 'now'));
+            $fakeDate = Carbon::create(2018, rand(0,12), rand(0,28), 0, 0, 0);
             $fakesComments[] = [
                 'user' => $users[rand(0, count($users)-1)],
                 'content' => $faker->text,
+                'date' =>  $fakeDate->diffForHumans(),
+                'nbComments' => rand(0,30),
+                'nbLikes' => rand(0,30),
             ];
         }
         $video->comments = $fakesComments;
