@@ -89,8 +89,7 @@ class VideoController extends Controller
         $users = User::all();
         $faker = Faker\Factory::create();
         $fakesComments = [];
-        for ($i=0; $i < 50; $i++) { 
-            // dd($faker->date($format = 'Y-m-d', $max = 'now'));
+        for ($i=0; $i < 10; $i++) { 
             $fakeDate = Carbon::create(2018, rand(0,12), rand(0,28), 0, 0, 0);
             $fakesComments[] = [
                 'user' => $users[rand(0, count($users)-1)],
