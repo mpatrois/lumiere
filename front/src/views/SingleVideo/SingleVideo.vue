@@ -2,6 +2,9 @@
   <section v-if="video" class="singleVideo__container">
     <div class="singleVideo__video__container">
 
+      <div class="thanks" v-if="activeThanks">
+        Merci pour votre soutien ! Une tortue sauvée 🐢
+      </div>
 
       <video v-if="!pubHasPlayed" ref="videoPub" autoplay>
         <source src="../../assets/pub.mp4">
@@ -110,6 +113,7 @@ export default {
       duration: 0,
       visibleDescription: false,
       pubHasPlayed: false,
+      activeThanks: false,
     };
   },
   computed: {
@@ -165,6 +169,10 @@ export default {
           };
           this.$refs.videoPub.onended = () => {
             this.pubHasPlayed = true;
+
+            this.activeThanks = true;
+
+
             setTimeout(() => {
               this.duration = this.$refs.video.duration;
               this.$refs.video.ontimeupdate = (event) => {
@@ -172,8 +180,13 @@ export default {
               };
               this.$refs.video.play();
             }, 200);
+
+
+            setTimeout(() => {
+              this.activeThanks = false;
+            }, 2000);
           };
-        }, 1000);
+        }, 2000);
       });
   },
   beforeDestroy() {
@@ -258,6 +271,18 @@ video{
   &.hide{
     display: none;
   }
+}
+
+.thanks {
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  background: #fff;
+  padding: 10px 20px;
+  color: #000;
+  font-size: 14px;
+  font-family: 'SF', Helvetica, sans-serif;
+  border-radius: 20px;
 }
 
 </style>

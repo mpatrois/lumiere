@@ -1,0 +1,22 @@
+.btn {
+  border: none;
+  background: none;
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: 16px;
+  background:red;
+  padding: 12px 54px 12px 24px;
+  border-radius: 22.5px;
+
+  &.white {
+    background: #FFFFFF;
+    color: #222222;
+    border: 1px solid #FFFFFF;
+  }
+
+  &.dark {
+    background: none;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+  }
+}
