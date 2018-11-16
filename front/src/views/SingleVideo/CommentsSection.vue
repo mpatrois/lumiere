@@ -1,5 +1,5 @@
 <template>
-    <div class="comment">
+    <div class="comments">
         <input type="text" placeholder="ajouter un commentaire">
         <div>
             <h3>TOP COMMENTAIRE</h3>
@@ -9,7 +9,7 @@
                         <img :src="comment.user.url_avatar">
                         <div class="user-infos">
                             <h4>
-                                {{user.name}}
+                                {{comment.user.name}}
                                 <span>{{comment.date}}</span>
                             </h4>
                             <div>
@@ -34,17 +34,26 @@ export default {
 </script>
 
 <style lang="scss">
-.comment{
+.comments{
+    background: #2E2F30;
+    color:white;
     h3{
         font-weight: 700;
     }
     .user-section{
         display: flex;
+        flex-direction: row;
         img{
             // flex: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
         }
         .user-infos{
-
+            h4{
+                margin: 0px;
+                padding: 0px 10px;
+            }
         }
     }
 }

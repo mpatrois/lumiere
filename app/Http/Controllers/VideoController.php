@@ -94,7 +94,7 @@ class VideoController extends Controller
             $fakeDate = Carbon::create(2018, rand(0,12), rand(0,28), 0, 0, 0);
             $fakesComments[] = [
                 'user' => $users[rand(0, count($users)-1)],
-                'content' => $faker->text,
+                'content' => $faker->text(146),
                 'date' =>  $fakeDate->diffForHumans(),
                 'nbComments' => rand(0,30),
                 'nbLikes' => rand(0,30),
