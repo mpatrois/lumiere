@@ -1,12 +1,15 @@
-/**
-* HEADER
-**/
 header {
   display: flex;
   justify-content: space-between;
-  height: 30px;
+  vertical-align: center;
+  height: 50px;
   margin-bottom: 20px;
+  background: $headerBck;
 
+
+  & > a {
+    display: inherit;
+  }
   .logo {
     width: 140px;
     height: auto;
@@ -36,19 +39,4 @@ header {
   border:none;
   outline:0;
   border-bottom: 1px solid #ccc
-}
-
-
-/**
-* SINGLE VIDEO
-**/
-.video__container {
-  background: #000;
-  display: flex;
-  justify-content: center;
-  height: 400px;
-
-  img, video {
-    max-height: 400px;
-  }
 }

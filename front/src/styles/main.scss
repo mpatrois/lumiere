@@ -1,0 +1,20 @@
+$headerBck: #222222;
+
+
+@import 'reset';
+@import 'header';
+
+
+/**
+* SINGLE VIDEO
+**/
+.video__container {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  height: 400px;
+
+  img, video {
+    max-height: 400px;
+  }
+}
