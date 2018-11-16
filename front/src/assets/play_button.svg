@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>E4B063C8-D947-4F06-866D-3BDD18ECE39E</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Single2" transform="translate(-391.000000, -552.000000)" stroke="#FFFFFF">
+            <g id="VIDEO" transform="translate(0.000000, 51.000000)">
+                <g id="barre_control" transform="translate(205.000000, 501.000000)">
+                    <g id="play_button" transform="translate(186.000000, 0.000000)">
+                        <g transform="translate(0.923077, 0.923077)">
+                            <circle id="Oval" stroke-width="1.6" cx="11.0769231" cy="11.0769231" r="11.0769231"></circle>
+                            <polygon id="Triangle" stroke-width="1.6" transform="translate(12.177992, 11.365925) rotate(90.000000) translate(-12.177992, -11.365925) " points="12.1779921 7.81315731 15.7305762 14.9186932 8.62540798 14.9186932"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

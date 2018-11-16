@@ -6,6 +6,13 @@
         Your browser does not support HTML5 video.
       </video>
       <div class="video-controls">
+        <span class="play" v-if="isPause()">
+          <img src="../../assets/play_button.svg">
+        </span>
+        <span class="play" v-else>
+          <img src="../../assets/pause_button.svg">
+        </span>
+
         <span>{{secondToHumanDisplay(currentTime)}}</span>
         <div class="progress-bar">
           <div class="progress" :style="{
@@ -43,7 +50,10 @@
         <div class="description" v-if="visibleDescription">
           {{ video.description }}
         </div>
-        <a @click="() => visibleDescription = !visibleDescription" class="descriptionBtn">{{ visibleDescription ? "Fermer la description" : " voir la description" }}</a>
+        <a @click="() => visibleDescription = !visibleDescription"
+          class="descriptionBtn">
+          {{ visibleDescription ? "Fermer la description" : " voir la description" }}
+        </a>
         <div class="other-videos">
           <h2>Autres videos de Jim Carrey</h2>
           <ul>
@@ -54,6 +64,11 @@
             </li>
             <li>
               <img src="../../assets/Rectangle2.jpg">
+              <h4>Titre de la video</h4>
+              <span class="date">23/10/2018</span>
+            </li>
+            <li>
+              <img src="../../assets/Rectangle3.jpg">
               <h4>Titre de la video</h4>
               <span class="date">23/10/2018</span>
             </li>
@@ -113,6 +128,9 @@ export default {
     },
     getDurationPercent() {
       return this.currentTime * 100 / this.duration;
+    },
+    isPause() {
+      return this.$refs.video !== undefined && this.$refs.video.paused;
     },
   },
   created() {
@@ -182,6 +200,7 @@ export default {
       display: inline-block;
       width: 300px;
       margin-right: 30px;
+      margin-bottom: 30px;
       img{
         width: 100%;
       }
@@ -191,6 +210,10 @@ export default {
       }
     }
   }
+}
+
+.play{
+  margin-right: 10px;
 }
 
 </style>
