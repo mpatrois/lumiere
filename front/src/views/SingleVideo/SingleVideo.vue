@@ -40,11 +40,10 @@
             <span>200K followers</span>
           </div>
         </div>
-        <div class="description">
+        <div class="description" v-if="visibleDescription">
           {{ video.description }}
-
-          <a>voir la description</a>
         </div>
+        <a @click="() => visibleDescription = !visibleDescription" class="descriptionBtn">{{ visibleDescription ? "Fermer la description" : " voir la description" }}</a>
       </div>
       <CommentsSection :comments="video.comments"/>
     </div>
@@ -72,6 +71,7 @@ export default {
       ],
       currentTime: 0,
       duration: 0,
+      visibleDescription: false,
     };
   },
   computed: {
