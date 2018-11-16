@@ -7,13 +7,29 @@
         Your browser does not support HTML5 video.
       </video>
     </div>
-    <div class="video__infos">
-      <h1>{{ video.title }}</h1>
-      <div class="video__infos__subinfos">
-        <p>Views <span>{{viewsNb}}K</span></p>
-        <p>16/11/2018</p>
-        <p>Shared <span>{{sharedNb}}K</span></p>
-        <p>plants <span>{{plantsNb}}K</span></p>
+    <div class="singleVideo__video__content">
+      <div class="singleVideo__video__content__infos">
+        <div class="first-line">
+          <div>
+            <h1 class="title">{{ video.title }}</h1>
+            <div class="subinfos">
+              <p>Views <span class="bolded">{{viewsNb}}K</span></p>
+              <p>16/11/2018</p>
+              <p>Shared <span class="bolded">{{sharedNb}}K</span></p>
+              <p>plants <span class="bolded">{{plantsNb}}K</span></p>
+            </div>
+          </div>
+          <ul class="reactions-buttons">
+            <li v-for="(emoji, index) in emojiReactions" :key="index">{{emoji}}</li>
+          </ul>
+        </div>
+        <div class="profile">
+          <img src="../../../src/assets/userProfile.jpeg" alt="" class="pic">
+          <div class="name">
+            <h2>Jim Carrey</h2>
+            <span>200K followers</span>
+          </div>
+        </div>
       </div>
       <CommentsSection :comments="video.comments"/>
     </div>
@@ -24,9 +40,13 @@
 
 <script>
 import axios from 'axios';
+import CommentsSection from './CommentsSection.vue';
 
 export default {
   name: 'SingleVideo',
+  components: {
+    CommentsSection,
+  },
   data() {
     return {
       video: '',
@@ -34,6 +54,9 @@ export default {
       viewsNb: this.randomNb(100, 800),
       sharedNb: this.randomNb(1, 50),
       plantsNb: this.randomNb(50, 400),
+      emojiReactions: [
+        '🍃', '❤️', '😂', '🤨', '😡',
+      ],
     };
   },
   methods: {
