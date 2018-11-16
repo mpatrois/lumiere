@@ -40,11 +40,14 @@
             <span>200K followers</span>
           </div>
         </div>
+        <div class="description">
+          {{ video.description }}
+
+          <a>voir la description</a>
+        </div>
       </div>
       <CommentsSection :comments="video.comments"/>
     </div>
-    <p>{{ video.title }}</p>
-    <span>{{ video.description }}</span>
   </section>
 </template>
 
