@@ -3,7 +3,8 @@
     <router-link to="/">
       <img src="../assets/logo_lumiere.svg" alt="Logo Lumière" class="logo">
     </router-link>
-    <input type="text" v-model="searchText" class="searchBar" placeholder="Search here..." @keypress.enter="goToSearch"/>
+    <input type="text" v-model="searchText" class="searchBar"
+    placeholder="Search here..." @keypress.enter="goToSearch"/>
     <div class="header__actions">
       <!-- <router-link to="/upload"> -->
         <img src="../assets/add.svg">
