@@ -44,6 +44,21 @@
           {{ video.description }}
         </div>
         <a @click="() => visibleDescription = !visibleDescription" class="descriptionBtn">{{ visibleDescription ? "Fermer la description" : " voir la description" }}</a>
+        <div class="other-videos">
+          <h2>Autres videos de Jim Carrey</h2>
+          <ul>
+            <li>
+              <img src="../../assets/Rectangle.jpg">
+              <h4>Titre de la video</h4>
+              <span class="date">23/10/2018</span>
+            </li>
+            <li>
+              <img src="../../assets/Rectangle2.jpg">
+              <h4>Titre de la video</h4>
+              <span class="date">23/10/2018</span>
+            </li>
+          </ul>
+        </div>
       </div>
       <CommentsSection :comments="video.comments"/>
     </div>
@@ -154,6 +169,27 @@ export default {
   .progress{
     background: #FFFFFF;
     height: 3px;
+  }
+}
+
+.other-videos{
+  margin-top:20px;
+  h2{
+    margin-bottom: 10px;
+  }
+  ul{
+    li{
+      display: inline-block;
+      width: 300px;
+      margin-right: 30px;
+      img{
+        width: 100%;
+      }
+      .date{
+        color: #ccc;
+        font-size: 12px;
+      }
+    }
   }
 }
 
