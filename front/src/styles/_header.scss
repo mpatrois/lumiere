@@ -1,8 +1,9 @@
 header {
   display: flex;
   justify-content: space-between;
-  vertical-align: center;
+  align-items: center;
   height: 50px;
+  padding: 0 25px;
   margin-bottom: 20px;
   background: $headerBck;
 
@@ -21,10 +22,19 @@ header {
 
 .header__actions {
   display: flex;
+  align-items: center;
 
   .notifs,
   .profile {
     position: relative;
+  }
+
+
+  img {
+    cursor: no-drop; 
+    &:not(:last-of-type){
+      margin-right: 25px;
+    }
   }
 }
 
@@ -35,13 +45,20 @@ header {
 
 .searchBar {
   width: 100%;
+  max-width: 500px;
   margin: 0 10%;
-  border:none;
   outline:0;
-  border-bottom: 1px solid #ccc;
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 19px;
+  padding-left: 15px;
+  height: 30px;
+  font-size: 14px;
 
   &[placeholder] {
     font-family: $font-body;
-    font-weight: normal
+    font-weight: normal;
+    color: #fff;
+    font-size: 14px;
   }
 }
