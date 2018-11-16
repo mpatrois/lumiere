@@ -12,7 +12,7 @@
                                 {{comment.user.name}}
                                 <span class="info-date">{{comment.date}}</span>
                             </h4>
-                            <div>
+                            <div class="comment-likes">
                                 <span>{{comment.nbLikes}} likes</span>
                                 <span>{{comment.nbComments}} commentaires</span>
                             </div>
@@ -34,13 +34,22 @@ export default {
 </script>
 
 <style lang="scss">
+
+$font-title: 'SG', Helvetica, 'Helvetica Neue', sans-serif;
+$font-body: 'SF', Helvetica, 'Helvetica Neue', sans-serif;
+
+
 .comments{
     background: #2E2F30;
     color:white;
     padding: 20px;
+    font-family: $font-body;
     h3{
-        font-weight: 700;
+        // font-weight: 300;
         padding-bottom: 10px;
+        font-size: 12.86px;
+        font-weight: bold;
+        line-height: 18px;
     }
     input{
         width: 100%;
@@ -69,17 +78,34 @@ export default {
             border-radius: 50%;
         }
         .user-infos{
+            padding: 0px 10px;
             h4{
                 margin: 0px;
-                padding: 0px 10px;
+
+                // padding: 0px 10px;
             }
             .info-date{
-                font-size: 10px;
+                font-size: 9px;
+                color: #979797;
+                font-weight: 100;
+                margin-left: 20px;
+            }
+            .comment-likes{
+                margin-top: 2px;
+                span{
+                    font-size: 10px;
+                    margin-right: 5px;
+                    color: #979797;
+                    font-weight: 100;
+                }
             }
         }
     }
     .comment-content{
-        font-size: 12px;
+        font-size: 10px;
+        font-family: "SF";
+        line-height: 15px;
+        font-weight: 100;
     }
 }
 </style>
