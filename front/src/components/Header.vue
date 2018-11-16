@@ -1,6 +1,7 @@
 <template>
   <header>
     <router-link to="/">
+      <img src="../assets/cart__icon.svg"  class="menu-icon">
       <img src="../assets/logo_lumiere.svg" alt="Logo Lumière" class="logo">
     </router-link>
     <div class="searchBar">
@@ -16,7 +17,7 @@
       <!-- </router-link> -->
       <img src="../assets/feed.svg" alt="">
       <img src="../assets/notif.svg" alt="">
-      <img src="../assets/profile.svg" alt="">
+      <img src="../assets/userProfile.jpeg" class="user-avatar" alt="">
       <!-- <div class="profile">
         <img src="https://image.flaticon.com/icons/svg/78/78373.svg" alt="" class="tmpIconHeader" @click="displayProfile">
         <div class="profile__content">
@@ -49,3 +50,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+img.user-avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.menu-icon{
+  width: 15px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+</style>
